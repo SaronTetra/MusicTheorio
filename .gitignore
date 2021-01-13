@@ -13,4 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
-/idea
+/.idea
+/app/src/main/res/raw/piano
