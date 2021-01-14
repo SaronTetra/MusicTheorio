@@ -3,11 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/mainActivity">
+    app:startDestination="@id/title_screen">
 
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="me.sarian.musictheorio.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/title_screen"
+        android:name="me.sarian.musictheorio.TitleScreen"
+        android:label="fragment_title_screen"
+        tools:layout="@layout/fragment_scales">
+        <action
+            android:id="@+id/action_title_screen_to_register"
+            app:destination="@id/scales" />
+    </fragment>
+
 </navigation>
