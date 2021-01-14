@@ -1,16 +1,21 @@
 package me.sarian.musictheorio
 
+import android.content.res.AssetFileDescriptor
+import android.content.res.AssetManager
+import android.media.AudioAttributes
+import android.media.SoundPool
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
-import android.widget.Button
-import android.widget.TextView
+import java.util.*
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
 
 // Remove the line below after defining your own ad unit ID.
 private const val TOAST_TEXT = "Test ads are being shown. " +
@@ -25,14 +30,35 @@ class MainActivity : AppCompatActivity() {
     private lateinit var nextLevelButton: Button
     private lateinit var levelTextView: TextView
 
+    private var soundIndex: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        val attributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_GAME)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+        val sp: SoundPool = SoundPool.Builder().setAudioAttributes(attributes).setMaxStreams(10).build()
+        val sm = ArrayList<Int>()
+        assets.list("piano")?.forEach {
+            val afd = assets.openFd("piano/$it")
+            println(it)
+            sm.add(
+                sp.load(afd, 1)
+            )
+        }
+
         // Create the next level button, which tries to show an interstitial when clicked.
         nextLevelButton = findViewById(R.id.next_level_button)
         nextLevelButton.isEnabled = false
-        nextLevelButton.setOnClickListener { showInterstitial() }
+        nextLevelButton.setOnClickListener {
+            playSound(sp, sm, soundIndex)
+            this.soundIndex++
+            this.soundIndex = this.soundIndex.rem(24)
+        }
 
         levelTextView = findViewById(R.id.level)
         // Create the text view to show the level number.
@@ -44,6 +70,13 @@ class MainActivity : AppCompatActivity() {
 
         // Toasts the test ad message on the screen. Remove this after defining your own ad unit ID.
         Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG).show()
+
+
+    }
+
+    private fun playSound(sp: SoundPool, sm: ArrayList<Int>, index:Int) {
+
+        sp.play(sm[index], 1F, 1F, 1, 0, 1f)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
