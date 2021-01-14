@@ -14,4 +14,4 @@
 .cxx
 local.properties
 /.idea
-/app/src/main/res/raw/piano
+/app/src/main/assets/piano
