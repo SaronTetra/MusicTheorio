@@ -1,21 +1,31 @@
 package me.sarian.musictheorio
 
 import android.os.Bundle
-import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.RadioButton
+import android.widget.Spinner
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  {
+    private var bannerAdView: AdView? = null
 
-    var type: String = "Major"
-    var mode: String = ""
+    private var type: String = "Major"
+    private var mode: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scales)
 
-        val message = intent.getStringExtra(EXTRA_MESSAGE)
+        MobileAds.initialize(this) {}
+
+        bannerAdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        bannerAdView?.loadAd(adRequest)
 
         val spinner: Spinner = findViewById(R.id.spinner)
         spinner.onItemSelectedListener = this
@@ -32,12 +42,12 @@ class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  
         TODO("Not yet implemented")
     }
 
-    fun setScaleName() {
+    private fun setScaleName() {
         val textView = findViewById<TextView>(R.id.scale_name)
         textView.text = "${this.mode} ${this.type}"
     }
 
-    fun onRadioButtonClicked(view: View) {
+    private fun onRadioButtonClicked(view: View) {
         if (view is RadioButton) {
             val checked = view.isChecked
             when (view.getId()) {

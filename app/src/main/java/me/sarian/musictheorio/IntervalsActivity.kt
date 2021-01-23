@@ -18,6 +18,5 @@ class IntervalsActivity : AppCompatActivity() {
         bannerAdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         bannerAdView?.loadAd(adRequest)
-
     }
 }
