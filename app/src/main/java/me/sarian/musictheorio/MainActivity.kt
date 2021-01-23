@@ -4,13 +4,9 @@ import android.content.Intent
 import android.media.AudioAttributes
 import android.media.SoundPool
 import android.os.Bundle
-import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdListener
@@ -23,14 +19,13 @@ import java.util.*
 private const val TOAST_TEXT = "Test ads are being shown. " +
         "To show live ads, replace the ad unit ID in res/values/strings.xml " +
         "with your own ad unit ID."
-private const val START_LEVEL = 1
 
 class MainActivity : AppCompatActivity() {
 
-    private var currentLevel: Int = 0
     private var interstitialAd: InterstitialAd? = null
-    private lateinit var nextLevelButton: Button
-    private lateinit var levelTextView: TextView
+    private lateinit var scalesButton: Button
+    private lateinit var playButton: Button
+
 
     private var soundIndex: Int = 0
 
@@ -54,18 +49,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Create the next level button, which tries to show an interstitial when clicked.
-        nextLevelButton = findViewById(R.id.next_level_button)
-        nextLevelButton.isEnabled = false
-        nextLevelButton.setOnClickListener {
+        scalesButton = findViewById(R.id.scales_button)
+        scalesButton.isEnabled = false
+        scalesButton.setOnClickListener {
             showInterstitial()
+        }
+
+        playButton = findViewById(R.id.play_sound)
+        playButton.setOnClickListener {
             playSound(sp, sm, soundIndex)
             this.soundIndex++
             this.soundIndex = this.soundIndex.rem(24)
         }
 
-        levelTextView = findViewById(R.id.level)
-        // Create the text view to show the level number.
-        currentLevel = START_LEVEL
+
 
         // Create the InterstitialAd and set the adUnitId (defined in values/strings.xml).
         interstitialAd = newInterstitialAd()
@@ -77,17 +74,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun sendMessage(view: View){
-        val editText = findViewById<EditText>(R.id.editTextTextPersonName)
-        val message = editText.text.toString()
-        val intent = Intent(this, ScalesActivity::class.java).apply {
-            putExtra(EXTRA_MESSAGE, message)
-        }
-        startActivity(intent)
-    }
-
     private fun playSound(sp: SoundPool, sm: ArrayList<Int>, index:Int) {
-
         sp.play(sm[index], 1F, 1F, 1, 0, 1f)
     }
 
@@ -108,16 +95,16 @@ class MainActivity : AppCompatActivity() {
             adUnitId = getString(R.string.interstitial_ad_unit_id)
             adListener = object : AdListener() {
                 override fun onAdLoaded() {
-                    nextLevelButton.isEnabled = true
+                    scalesButton.isEnabled = true
                 }
 
                 override fun onAdFailedToLoad(errorCode: Int) {
-                    nextLevelButton.isEnabled = true
+                    scalesButton.isEnabled = true
                 }
 
                 override fun onAdClosed() {
                     // Proceed to the next level.
-                    goToNextLevel()
+                    goToScales()
                 }
             }
         }
@@ -129,23 +116,23 @@ class MainActivity : AppCompatActivity() {
             interstitialAd?.show()
         } else {
             Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show()
-            goToNextLevel()
         }
     }
 
     private fun loadInterstitial() {
         // Disable the next level button and load the ad.
-        nextLevelButton.isEnabled = false
+        scalesButton.isEnabled = false
         val adRequest = AdRequest.Builder()
                 .setRequestAgent("android_studio:ad_template")
                 .build()
         interstitialAd?.loadAd(adRequest)
     }
 
-    private fun goToNextLevel() {
+    private fun goToScales() {
         // Show the next level and reload the ad to prepare for the level after.
-        levelTextView.text = "Level " + (++currentLevel)
         interstitialAd = newInterstitialAd()
         loadInterstitial()
+        val intent = Intent(this, ScalesActivity::class.java)
+        startActivity(intent)
     }
 }
