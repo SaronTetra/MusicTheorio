@@ -3,13 +3,13 @@ package me.sarian.musictheorio
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.View
-import android.widget.AdapterView
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
 class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  {
+
+    var type: String = "Major"
+    var mode: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,17 +21,36 @@ class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  
         spinner.onItemSelectedListener = this
 
 
-        val textView = findViewById<TextView>(R.id.scale_name).apply {
-            text = message
-        }
     }
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         val temp = parent.getItemAtPosition(pos)
-        Toast.makeText(this, temp.toString(), Toast.LENGTH_LONG).show()
+        this.mode = temp.toString()
+        setScaleName()
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
         TODO("Not yet implemented")
     }
 
+    fun setScaleName() {
+        val textView = findViewById<TextView>(R.id.scale_name)
+        textView.text = "${this.mode} ${this.type}"
+    }
+
+    fun onRadioButtonClicked(view: View) {
+        if (view is RadioButton) {
+            val checked = view.isChecked
+            when (view.getId()) {
+                R.id.radioMajor ->
+                    if (checked) {
+                        this.type = "Major"
+                    }
+                R.id.radioMinor ->
+                    if (checked) {
+                        this.type = "Minor"
+                    }
+            }
+            setScaleName()
+        }
+    }
 }

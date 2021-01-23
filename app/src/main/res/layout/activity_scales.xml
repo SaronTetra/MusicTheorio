@@ -30,23 +30,27 @@
         app:layout_constraintTop_toBottomOf="@+id/activityTitle" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/radioScaleType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:checkedButton="@id/radioMajor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activityTitle">
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radioMajor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
             android:text="@string/scales_radio_major" />
 
+
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/radioMinor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
             android:text="@string/scales_radio_minor" />
     </RadioGroup>
 
@@ -60,7 +64,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+        app:layout_constraintTop_toBottomOf="@+id/radioScaleType">
 
         <Button
             android:id="@+id/button6"
@@ -77,7 +81,7 @@
         android:layout_marginTop="64dp"
         android:layout_marginBottom="28dp"
         android:text="A#"
-        android:textSize="64dp"
+        android:textSize="64sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
