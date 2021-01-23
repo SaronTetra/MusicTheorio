@@ -2,7 +2,6 @@
     <string name="app_name">MusicTheorio</string>
     <string name="action_settings">Settings</string>
     <string name="subtitle">Learn you some music theory</string>
-
     <!-- -
         This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
         For more information, see https://support.google.com/admob/answer/3052638
@@ -13,5 +12,17 @@
     <string name="play_button">Play sound</string>
 
     <string name="intervals_title">Intervals</string>
+    <string name="chord_view_title">Chord View</string>
+
+    <string name="scales">Scales</string>
     <string name="scales_title">Scales</string>
+    <string name="scales_radio_major">Major</string>
+    <string name="scales_radio_minor">Minor</string>
+    <string name="button_next">Next</string>
+    <string name="scales_loop">Loop</string>
+    <string-array name="scale_modes">
+        <item>Natural</item>
+        <item>Harmonic</item>
+        <item>Melodic</item>
+    </string-array>
 </resources>
