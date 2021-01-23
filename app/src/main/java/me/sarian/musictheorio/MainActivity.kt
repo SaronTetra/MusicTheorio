@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private var interstitialAd: InterstitialAd? = null
     private lateinit var scalesButton: Button
     private lateinit var intervalsButton: Button
+    private lateinit var circleOfFifthsButton: Button
     private lateinit var playButton: Button
 
 
@@ -69,6 +70,16 @@ class MainActivity : AppCompatActivity() {
             interstitialAd?.adListener = object : AdListener() {
                 override fun onAdClosed() {
                     goToIntervals()
+                }
+            }
+            showInterstitial()
+        }
+
+        circleOfFifthsButton = findViewById(R.id.circle_of_fifths_button)
+        circleOfFifthsButton.setOnClickListener {
+            interstitialAd?.adListener = object : AdListener() {
+                override fun onAdClosed() {
+                    goToCircleOfFifths()
                 }
             }
             showInterstitial()
@@ -146,6 +157,13 @@ class MainActivity : AppCompatActivity() {
         interstitialAd = newInterstitialAd()
         loadInterstitial()
         val intent = Intent(this, IntervalsActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToCircleOfFifths() {
+        interstitialAd = newInterstitialAd()
+        loadInterstitial()
+        val intent = Intent(this, CircleOfFifthsActivity::class.java)
         startActivity(intent)
     }
 }

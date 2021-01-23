@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IntervalsActivity">
+    tools:context=".CircleOfFifthsActivity">
 
     <TextView
         android:id="@+id/activityTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/intervals_title"
+        android:text="@string/circle_of_fifths_title"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
