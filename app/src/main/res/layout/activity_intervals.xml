@@ -5,13 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScalesActivity">
+    tools:context=".IntervalsActivity">
 
     <TextView
         android:id="@+id/activityTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/scales_title"
+        android:text="@string/intervals_title"
         android:textAppearance="?android:attr/textAppearanceLarge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

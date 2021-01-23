@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private var interstitialAd: InterstitialAd? = null
     private lateinit var scalesButton: Button
+    private lateinit var intervalsButton: Button
     private lateinit var playButton: Button
 
 
@@ -54,8 +55,22 @@ class MainActivity : AppCompatActivity() {
 
         // Create the next level button, which tries to show an interstitial when clicked.
         scalesButton = findViewById(R.id.scales_button)
-        scalesButton.isEnabled = false
         scalesButton.setOnClickListener {
+            interstitialAd?.adListener = object : AdListener() {
+                override fun onAdClosed() {
+                    goToScales()
+                }
+            }
+            showInterstitial()
+        }
+
+        intervalsButton = findViewById(R.id.intervals_button)
+        intervalsButton.setOnClickListener {
+            interstitialAd?.adListener = object : AdListener() {
+                override fun onAdClosed() {
+                    goToIntervals()
+                }
+            }
             showInterstitial()
         }
 
@@ -97,20 +112,6 @@ class MainActivity : AppCompatActivity() {
     private fun newInterstitialAd(): InterstitialAd {
         return InterstitialAd(this).apply {
             adUnitId = getString(R.string.interstitial_ad_unit_id)
-            adListener = object : AdListener() {
-                override fun onAdLoaded() {
-                    scalesButton.isEnabled = true
-                }
-
-                override fun onAdFailedToLoad(errorCode: Int) {
-                    scalesButton.isEnabled = true
-                }
-
-                override fun onAdClosed() {
-                    // Proceed to the next level.
-                    goToScales()
-                }
-            }
         }
     }
 
@@ -124,19 +125,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadInterstitial() {
-        // Disable the next level button and load the ad.
         scalesButton.isEnabled = false
+        intervalsButton.isEnabled = false
         val adRequest = AdRequest.Builder()
                 .setRequestAgent("android_studio:ad_template")
                 .build()
         interstitialAd?.loadAd(adRequest)
+        scalesButton.isEnabled = true
+        intervalsButton.isEnabled = true
     }
 
     private fun goToScales() {
-        // Show the next level and reload the ad to prepare for the level after.
         interstitialAd = newInterstitialAd()
         loadInterstitial()
         val intent = Intent(this, ScalesActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToIntervals() {
+        interstitialAd = newInterstitialAd()
+        loadInterstitial()
+        val intent = Intent(this, IntervalsActivity::class.java)
         startActivity(intent)
     }
 }
