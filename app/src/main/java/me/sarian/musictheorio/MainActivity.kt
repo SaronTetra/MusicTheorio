@@ -1,13 +1,15 @@
 package me.sarian.musictheorio
 
-import android.content.res.AssetFileDescriptor
-import android.content.res.AssetManager
+import android.content.Intent
 import android.media.AudioAttributes
 import android.media.SoundPool
 import android.os.Bundle
+import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -55,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         nextLevelButton = findViewById(R.id.next_level_button)
         nextLevelButton.isEnabled = false
         nextLevelButton.setOnClickListener {
+            showInterstitial()
             playSound(sp, sm, soundIndex)
             this.soundIndex++
             this.soundIndex = this.soundIndex.rem(24)
@@ -72,6 +75,15 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG).show()
 
 
+    }
+
+    fun sendMessage(view: View){
+        val editText = findViewById<EditText>(R.id.editTextTextPersonName)
+        val message = editText.text.toString()
+        val intent = Intent(this, ScalesActivity::class.java).apply {
+            putExtra(EXTRA_MESSAGE, message)
+        }
+        startActivity(intent)
     }
 
     private fun playSound(sp: SoundPool, sm: ArrayList<Int>, index:Int) {
