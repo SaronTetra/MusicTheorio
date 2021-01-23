@@ -20,6 +20,8 @@
     <string name="scales_title">Scales</string>
     <string name="scales_radio_major">Major</string>
     <string name="scales_radio_minor">Minor</string>
+    <string name="button_next">Next</string>
+    <string name="scales_loop">Loop</string>
     <string-array name="scale_modes">
         <item>Natural</item>
         <item>Harmonic</item>
