@@ -34,6 +34,9 @@ class MainActivity : AppCompatActivity() {
 
     private var soundIndex: Int = 0
 
+    private val soundMap = mutableMapOf<String, Int>()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -45,9 +48,10 @@ class MainActivity : AppCompatActivity() {
             .build()
         val sp: SoundPool = SoundPool.Builder().setAudioAttributes(attributes).setMaxStreams(10).build()
         val sm = ArrayList<Int>()
-        assets.list("piano")?.forEach {
+        assets.list("piano")?.forEachIndexed() { index, it->
             val afd = assets.openFd("piano/$it")
             println(it)
+            soundMap[it.removeSuffix(".wav")] = index
             sm.add(
                 sp.load(afd, 1)
             )
