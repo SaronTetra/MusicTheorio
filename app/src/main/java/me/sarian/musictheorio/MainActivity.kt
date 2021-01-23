@@ -1,6 +1,7 @@
 package me.sarian.musictheorio
 
 import android.content.Intent
+import android.content.res.AssetFileDescriptor
 import android.media.AudioAttributes
 import android.media.SoundPool
 import android.os.Bundle
@@ -21,6 +22,7 @@ private const val TOAST_TEXT = "Test ads are being shown. " +
         "with your own ad unit ID."
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var soundPlayer: SoundPlayer
 
     private var interstitialAd: InterstitialAd? = null
     private lateinit var scalesButton: Button
@@ -31,28 +33,11 @@ class MainActivity : AppCompatActivity() {
 
     private var soundIndex: Int = 0
 
-    private val soundMap = mutableMapOf<String, Int>()
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        val attributes = AudioAttributes.Builder()
-            .setUsage(AudioAttributes.USAGE_GAME)
-            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-            .build()
-        val sp: SoundPool = SoundPool.Builder().setAudioAttributes(attributes).setMaxStreams(10).build()
-        val sm = ArrayList<Int>()
-        assets.list("piano")?.forEachIndexed() { index, it->
-            val afd = assets.openFd("piano/$it")
-            println(it)
-            soundMap[it.removeSuffix(".wav")] = index
-            sm.add(
-                sp.load(afd, 1)
-            )
-        }
+        soundPlayer = SoundPlayer(assets)
 
         // Create the next level button, which tries to show an interstitial when clicked.
         scalesButton = findViewById(R.id.scales_button)
@@ -87,9 +72,9 @@ class MainActivity : AppCompatActivity() {
 
         playButton = findViewById(R.id.play_sound)
         playButton.setOnClickListener {
-            playSound(sp, sm, soundIndex)
+            soundPlayer.playSound(soundIndex)
             this.soundIndex++
-            this.soundIndex = this.soundIndex.rem(24)
+            this.soundIndex = this.soundIndex.rem(25)
         }
 
 
@@ -104,8 +89,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun playSound(sp: SoundPool, sm: ArrayList<Int>, index:Int) {
-        sp.play(sm[index], 1F, 1F, 1, 0, 1f)
+    private fun playSound(soundPool: SoundPool, soundIndexes: ArrayList<Int>, index:Int) {
+        soundPool.play(soundIndexes[index], 1F, 1F, 1, 0, 1f)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
