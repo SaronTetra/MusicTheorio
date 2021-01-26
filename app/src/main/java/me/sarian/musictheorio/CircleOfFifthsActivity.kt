@@ -91,9 +91,9 @@ class CircleOfFifthsActivity : AppCompatActivity(), CircleLayout.OnItemSelectedL
         val index2 = index?.plus(4)
         val index3 = index?.plus(7)
 
-        soundPlayer.playSound(index!!)
-        soundPlayer.playSound(index2!!)
-        soundPlayer.playSound(index3!!)
+        soundPlayer.playSound(NotesIndexMap.indexNote[index!!].toString())
+        soundPlayer.playSound(NotesIndexMap.indexNote[index2!!].toString())
+        soundPlayer.playSound(NotesIndexMap.indexNote[index3!!].toString())
     }
 
     override fun onRotationFinished(view: View?) {
