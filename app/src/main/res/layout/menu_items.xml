@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <com.szugyi.circlemenu.view.CircleImageView
-        android:id="@+id/main_calendar_image"
+        android:id="@+id/c"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
@@ -14,7 +14,7 @@
         circle:name="calendar" />
 
     <com.szugyi.circlemenu.view.CircleImageView
-        android:id="@+id/main_cloud_image"
+        android:id="@+id/g"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
@@ -24,7 +24,7 @@
 
 
     <com.szugyi.circlemenu.view.CircleImageView
-        android:id="@+id/main_mail_image"
+        android:id="@+id/d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
@@ -33,7 +33,7 @@
         circle:name="mail" />
 
     <com.szugyi.circlemenu.view.CircleImageView
-        android:id="@+id/main_key_image"
+        android:id="@+id/a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
@@ -41,7 +41,7 @@
         circle:name="key" />
 
     <com.szugyi.circlemenu.view.CircleImageView
-        android:id="@+id/main_profile_image"
+        android:id="@+id/e"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
@@ -50,7 +50,61 @@
         circle:name="profile" />
 
     <com.szugyi.circlemenu.view.CircleImageView
-        android:id="@+id/main_tap_image"
+        android:id="@+id/b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:elevation="2dp"
+        android:title="ic_tag"
+        circle:name="tag" />
+
+    <com.szugyi.circlemenu.view.CircleImageView
+        android:id="@+id/gMol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:elevation="2dp"
+        android:title="ic_calendar"
+        circle:name="calendar" />
+
+    <com.szugyi.circlemenu.view.CircleImageView
+        android:id="@+id/dMol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:elevation="2dp"
+        android:title="ic_cloud"
+        circle:name="cloud" />
+
+
+    <com.szugyi.circlemenu.view.CircleImageView
+        android:id="@+id/aMol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:elevation="2dp"
+        android:title="ic_mail"
+        circle:name="mail" />
+
+    <com.szugyi.circlemenu.view.CircleImageView
+        android:id="@+id/eMol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:title="ic_key"
+        circle:name="key" />
+
+    <com.szugyi.circlemenu.view.CircleImageView
+        android:id="@+id/bMol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:elevation="2dp"
+        android:title="ic_profile"
+        circle:name="profile" />
+
+    <com.szugyi.circlemenu.view.CircleImageView
+        android:id="@+id/f"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
