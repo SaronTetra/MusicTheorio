@@ -9,6 +9,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
 import java.util.*
+import kotlin.random.Random
 
 
 class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  {
@@ -17,6 +18,8 @@ class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  
     private var type: String = "Major"
     private var mode: String = ""
     private lateinit var soundPlayer: SoundPlayer
+
+    private var randomNote: Int = 0
 
     private val betterNotes = mapOf(
         1 to "C3",
@@ -46,6 +49,9 @@ class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  
     )
     private val majorScale = intArrayOf(2,2,1,2,2,2,1)
     private val minorScale = intArrayOf(2,1,2,2,1,2,2)
+    private val scale = arrayOf(majorScale, minorScale)
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,11 +78,19 @@ class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  
             }
         })
 
+        val noteView: TextView = findViewById(R.id.note_name)
         val nextButton: Button = findViewById(R.id.button_next)
         nextButton.setOnClickListener {
-            playScale(1, 0, majorScale, true)
+            val rootNote = Random.nextInt(1, 12)
+            this.randomNote = rootNote
+            noteView.text = betterNotes[rootNote]!!.dropLast(1)
 
         }
+
+        noteView.setOnClickListener{
+            playScale(randomNote, 0, scale[if (type == "Major"){0} else{1} ], true)
+        }
+
     }
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         val temp = parent.getItemAtPosition(pos)
