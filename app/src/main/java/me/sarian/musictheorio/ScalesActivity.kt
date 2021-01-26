@@ -2,20 +2,20 @@ package me.sarian.musictheorio
 
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.RadioButton
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
+import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+
 
 class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  {
     private var bannerAdView: AdView? = null
 
     private var type: String = "Major"
     private var mode: String = ""
+    private lateinit var radioGroup: RadioGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,15 @@ class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  
         val spinner: Spinner = findViewById(R.id.spinner)
         spinner.onItemSelectedListener = this
 
-
+        val radioGroup = findViewById<RadioGroup>(R.id.radioScaleType)
+        radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+            val checkedRadioButton = group.findViewById<View>(checkedId) as RadioButton
+            val isChecked = checkedRadioButton.isChecked
+            if (isChecked) {
+                this.type = checkedRadioButton.text.toString()
+                setScaleName()
+            }
+        })
     }
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         val temp = parent.getItemAtPosition(pos)
@@ -45,22 +53,5 @@ class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  
     private fun setScaleName() {
         val textView = findViewById<TextView>(R.id.scale_name)
         textView.text = "${this.mode} ${this.type}"
-    }
-
-    private fun onRadioButtonClicked(view: View) {
-        if (view is RadioButton) {
-            val checked = view.isChecked
-            when (view.getId()) {
-                R.id.radioMajor ->
-                    if (checked) {
-                        this.type = "Major"
-                    }
-                R.id.radioMinor ->
-                    if (checked) {
-                        this.type = "Minor"
-                    }
-            }
-            setScaleName()
-        }
     }
 }

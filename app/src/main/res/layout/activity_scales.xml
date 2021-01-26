@@ -42,7 +42,6 @@
             android:id="@+id/radioMajor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
             android:text="@string/scales_radio_major" />
 
 
@@ -50,7 +49,6 @@
             android:id="@+id/radioMinor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onRadioButtonClicked"
             android:text="@string/scales_radio_minor" />
     </RadioGroup>
 
