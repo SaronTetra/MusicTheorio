@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
-        android:title="ic_calendar"
+        android:src="@drawable/ic_g"
         circle:name="calendar" />
 
     <com.szugyi.circlemenu.view.CircleImageView
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
-        android:title="ic_cloud"
+        android:src="@drawable/ic_g"
         circle:name="cloud" />
 
 
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
-        android:title="ic_mail"
+        android:src="@drawable/ic_g"
         circle:name="mail" />
 
     <com.szugyi.circlemenu.view.CircleImageView
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
-        android:title="ic_key"
+        android:src="@drawable/ic_g"
         circle:name="key" />
 
     <com.szugyi.circlemenu.view.CircleImageView
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
-        android:title="ic_profile"
+        android:src="@drawable/ic_g"
         circle:name="profile" />
 
     <com.szugyi.circlemenu.view.CircleImageView
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
-        android:title="ic_tag"
+        android:src="@drawable/ic_g"
         circle:name="tag" />
 
     <com.szugyi.circlemenu.view.CircleImageView
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
-        android:title="ic_calendar"
+        android:src="@drawable/ic_g"
         circle:name="calendar" />
 
     <com.szugyi.circlemenu.view.CircleImageView
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
-        android:title="ic_cloud"
+        android:src="@drawable/ic_g"
         circle:name="cloud" />
 
 
@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
-        android:title="ic_mail"
+        android:src="@drawable/ic_g"
         circle:name="mail" />
 
     <com.szugyi.circlemenu.view.CircleImageView
@@ -91,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
-        android:title="ic_key"
+        android:src="@drawable/ic_g"
         circle:name="key" />
 
     <com.szugyi.circlemenu.view.CircleImageView
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
-        android:title="ic_profile"
+        android:src="@drawable/ic_g"
         circle:name="profile" />
 
     <com.szugyi.circlemenu.view.CircleImageView
@@ -109,7 +109,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
-        android:title="ic_tag"
+        android:src="@drawable/ic_g"
         circle:name="tag" />
 
 </merge>

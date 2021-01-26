@@ -39,8 +39,6 @@ class CircleOfFifthsActivity : AppCompatActivity(), CircleLayout.OnItemSelectedL
         circleLayout.setOnCenterClickListener(this)
 
         selectedTextView = findViewById(R.id.selected_textView)
-
-        val view: View = circleLayout.selectedItem
     }
 
     override fun onItemSelected(view: View?) {
