@@ -49,8 +49,12 @@ class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  
     )
     private val majorScale = intArrayOf(2,2,1,2,2,2,1)
     private val minorScale = intArrayOf(2,1,2,2,1,2,2)
-    private val scale = arrayOf(majorScale, minorScale)
 
+    private val harmonicMinorScale = intArrayOf(2,1,2,2,1,3,1)
+    private val melodicMinorScale = intArrayOf(2,1,2,2,2,2,1)
+
+    private val harmonicMajorScale = intArrayOf(2,2,1,2,1,3,1)
+    private val melodicMajorScale = intArrayOf(2,2,1,2,2,2,1)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,10 +92,31 @@ class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  
         }
 
         noteView.setOnClickListener{
-            playScale(randomNote, 0, scale[if (type == "Major"){0} else{1} ], true)
+            playScale(randomNote, 0, selectScale(type, mode), true)
         }
 
+        nextButton.performClick()
     }
+
+    private fun selectScale(type: String, mode: String): IntArray {
+        if(type == "Major") {
+            return when (mode) {
+                "Natural" -> majorScale
+                "Melodic" -> melodicMajorScale
+                "Harmonic" -> harmonicMajorScale
+                else -> majorScale
+            }
+        }
+        else {
+            return when (mode) {
+                "Natural" -> minorScale
+                "Melodic" -> melodicMinorScale
+                "Harmonic" -> harmonicMinorScale
+                else -> minorScale
+            }
+        }
+    }
+
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         val temp = parent.getItemAtPosition(pos)
         this.mode = temp.toString()
