@@ -50,14 +50,14 @@ class IntervalsActivity : AppCompatActivity() {
             val textNote2 = findViewById<TextView>(R.id.note2)
 
             textInterval.text = intervals[randInterval]
-            playInterval(NotesIndexMap.notes, randRoot, randInterval)
-            textNote.text = NotesIndexMap.notes[randRoot]!!.dropLast(1)
-            textNote2.text = NotesIndexMap.notes[randRoot + randInterval]!!.dropLast(1)
+            playInterval(NotesIndexMap.indexNote, randRoot, randInterval)
+            textNote.text = NotesIndexMap.indexNote[randRoot]!!.dropLast(1)
+            textNote2.text = NotesIndexMap.indexNote[randRoot + randInterval]!!.dropLast(1)
         }
 
         val noteView: TextView = findViewById(R.id.note)
         noteView.setOnClickListener{
-            playInterval(NotesIndexMap.notes, this.randomNote, this.randomInterval)
+            playInterval(NotesIndexMap.indexNote, this.randomNote, this.randomInterval)
         }
 
         bannerAdView = findViewById(R.id.adView)

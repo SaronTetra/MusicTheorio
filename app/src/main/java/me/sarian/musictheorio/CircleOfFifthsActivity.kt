@@ -50,42 +50,52 @@ class CircleOfFifthsActivity : AppCompatActivity(), CircleLayout.OnItemSelectedL
     override fun onItemClick(view: View?) {
         when (view!!.id) {
             R.id.c -> {
-                soundPlayer.playSound("C3")
+                 playChord("C3")
             }
             R.id.g -> {
-                soundPlayer.playSound("G3")
+                 playChord("G3")
             }
             R.id.d -> {
-                soundPlayer.playSound("D3")
+                 playChord("D3")
             }
             R.id.a -> {
-                soundPlayer.playSound("A3")
+                 playChord("A3")
             }
             R.id.e -> {
-                soundPlayer.playSound("E3")
+                 playChord("E3")
             }
             R.id.b -> {
-                soundPlayer.playSound("B3")
+                 playChord("B3")
             }
             R.id.gMol -> {
-                soundPlayer.playSound("F#3")
+                 playChord("F#3")
             }
             R.id.dMol -> {
-                soundPlayer.playSound("C#3")
+                 playChord("C#3")
             }
             R.id.aMol -> {
-                soundPlayer.playSound("G#3")
+                 playChord("G#3")
             }
             R.id.eMol -> {
-                soundPlayer.playSound("D#3")
+                 playChord("D#3")
             }
             R.id.bMol -> {
-                soundPlayer.playSound("A#3")
+                 playChord("A#3")
             }
             R.id.f -> {
-                soundPlayer.playSound("F3")
+                 playChord("F3")
             }
         }
+    }
+
+    private fun playChord(note: String) {
+        val index = NotesIndexMap.noteIndex[note]
+        val index2 = index?.plus(4)
+        val index3 = index?.plus(7)
+
+        soundPlayer.playSound(index!!)
+        soundPlayer.playSound(index2!!)
+        soundPlayer.playSound(index3!!)
     }
 
     override fun onRotationFinished(view: View?) {
