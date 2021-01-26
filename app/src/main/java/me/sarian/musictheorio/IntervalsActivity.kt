@@ -37,32 +37,6 @@ class IntervalsActivity : AppCompatActivity() {
                 11 to "M7",
                 12 to "P8"
         )
-        val betterNotes = mapOf(
-                1 to "C3",
-                2 to "C#3",
-                3 to "D3",
-                4 to "D#3",
-                5 to "E3",
-                6 to "F3",
-                7 to "F#3",
-                8 to "G3",
-                9 to "G#3",
-                10 to "A3",
-                11 to "A#3",
-                12 to "B3",
-                13 to "C4",
-                14 to "C#4",
-                15 to "D4",
-                16 to "D#4",
-                17 to "E4",
-                18 to "F4",
-                19 to "F#4",
-                20 to "G4",
-                21 to "G#4",
-                22 to "A4",
-                23 to "A#4",
-                24 to "B4"
-        )
 
         val nextButton: Button = findViewById(R.id.button_next)
         nextButton.setOnClickListener {
@@ -76,14 +50,14 @@ class IntervalsActivity : AppCompatActivity() {
             val textNote2 = findViewById<TextView>(R.id.note2)
 
             textInterval.text = intervals[randInterval]
-            playInterval(betterNotes, randRoot, randInterval)
-            textNote.text = betterNotes[randRoot]!!.dropLast(1)
-            textNote2.text = betterNotes[randRoot + randInterval]!!.dropLast(1)
+            playInterval(NotesIndexMap.notes, randRoot, randInterval)
+            textNote.text = NotesIndexMap.notes[randRoot]!!.dropLast(1)
+            textNote2.text = NotesIndexMap.notes[randRoot + randInterval]!!.dropLast(1)
         }
 
         val noteView: TextView = findViewById(R.id.note)
         noteView.setOnClickListener{
-            playInterval(betterNotes, this.randomNote, this.randomInterval)
+            playInterval(NotesIndexMap.notes, this.randomNote, this.randomInterval)
         }
 
         bannerAdView = findViewById(R.id.adView)
