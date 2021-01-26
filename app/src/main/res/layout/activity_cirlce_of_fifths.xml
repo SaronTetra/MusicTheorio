@@ -19,6 +19,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <RelativeLayout xmlns:circle="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SampleActivity" >
+
+        <com.szugyi.circlemenu.view.CircleLayout
+            android:id="@+id/circle_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/selected_textView"
+            android:layout_gravity="center_horizontal"
+            circle:isRotating="false" >
+
+            <include layout="@layout/menu_items" />
+        </com.szugyi.circlemenu.view.CircleLayout>
+
+        <TextView
+            android:id="@+id/selected_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </RelativeLayout>
+
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="match_parent"
