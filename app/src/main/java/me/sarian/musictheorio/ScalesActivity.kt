@@ -13,7 +13,7 @@ import kotlin.random.Random
 
 
 class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  {
-    private var bannerAdView: AdView? = null
+    private lateinit var bannerAdView: AdView
 
     private var type: String = "Major"
     private var mode: String = ""
@@ -21,32 +21,6 @@ class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  
 
     private var randomNote: Int = 0
 
-    private val betterNotes = mapOf(
-        1 to "C3",
-        2 to "C#3",
-        3 to "D3",
-        4 to "D#3",
-        5 to "E3",
-        6 to "F3",
-        7 to "F#3",
-        8 to "G3",
-        9 to "G#3",
-        10 to "A3",
-        11 to "A#3",
-        12 to "B3",
-        13 to "C4",
-        14 to "C#4",
-        15 to "D4",
-        16 to "D#4",
-        17 to "E4",
-        18 to "F4",
-        19 to "F#4",
-        20 to "G4",
-        21 to "G#4",
-        22 to "A4",
-        23 to "A#4",
-        24 to "B4"
-    )
     private val majorScale = intArrayOf(2,2,1,2,2,2,1)
     private val minorScale = intArrayOf(2,1,2,2,1,2,2)
 
@@ -65,7 +39,7 @@ class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  
 
         bannerAdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
-        bannerAdView?.loadAd(adRequest)
+        bannerAdView.loadAd(adRequest)
 
         soundPlayer = SoundPlayer(assets)
 
@@ -73,21 +47,21 @@ class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  
         spinner.onItemSelectedListener = this
 
         val radioGroup = findViewById<RadioGroup>(R.id.radioScaleType)
-        radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+        radioGroup.setOnCheckedChangeListener { group, checkedId ->
             val checkedRadioButton = group.findViewById<View>(checkedId) as RadioButton
             val isChecked = checkedRadioButton.isChecked
             if (isChecked) {
                 this.type = checkedRadioButton.text.toString()
                 setScaleName()
             }
-        })
+        }
 
         val noteView: TextView = findViewById(R.id.note_name)
         val nextButton: Button = findViewById(R.id.button_next)
         nextButton.setOnClickListener {
             val rootNote = Random.nextInt(1, 12)
             this.randomNote = rootNote
-            noteView.text = betterNotes[rootNote]!!.dropLast(1)
+            noteView.text = NotesIndexMap.indexNote[rootNote]!!.dropLast(1)
 
         }
 
@@ -133,7 +107,7 @@ class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  
     }
 
     private fun playScale(note:Int, index: Int, scale: IntArray, direction: Boolean) {
-        soundPlayer.playSound(betterNotes[note].toString())
+        soundPlayer.playSound(NotesIndexMap.indexNote[note].toString())
         if(direction) {
             if (index < scale.size) {
                 Timer().schedule(object : TimerTask() {
@@ -155,5 +129,4 @@ class ScalesActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener  
             }
         }
     }
-
 }

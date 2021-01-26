@@ -1,9 +1,6 @@
 package me.sarian.musictheorio
 
 import android.content.Intent
-import android.content.res.AssetFileDescriptor
-import android.media.AudioAttributes
-import android.media.SoundPool
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,8 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
-import java.util.*
-
 
 // Remove the line below after defining your own ad unit ID.
 private const val TOAST_TEXT = "Test ads are being shown. " +
@@ -24,14 +19,14 @@ private const val TOAST_TEXT = "Test ads are being shown. " +
 class MainActivity : AppCompatActivity() {
     private lateinit var soundPlayer: SoundPlayer
 
-    private var interstitialAd: InterstitialAd? = null
+    private lateinit var interstitialAd: InterstitialAd
+
     private lateinit var scalesButton: Button
     private lateinit var intervalsButton: Button
     private lateinit var circleOfFifthsButton: Button
     private lateinit var playButton: Button
 
-
-    private var soundIndex: Int = 0
+    private var soundIndex = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         // Create the next level button, which tries to show an interstitial when clicked.
         scalesButton = findViewById(R.id.scales_button)
         scalesButton.setOnClickListener {
-            interstitialAd?.adListener = object : AdListener() {
+            interstitialAd.adListener = object : AdListener() {
                 override fun onAdClosed() {
                     goToScales()
                 }
@@ -52,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         intervalsButton = findViewById(R.id.intervals_button)
         intervalsButton.setOnClickListener {
-            interstitialAd?.adListener = object : AdListener() {
+            interstitialAd.adListener = object : AdListener() {
                 override fun onAdClosed() {
                     goToIntervals()
                 }
@@ -62,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
         circleOfFifthsButton = findViewById(R.id.circle_of_fifths_button)
         circleOfFifthsButton.setOnClickListener {
-            interstitialAd?.adListener = object : AdListener() {
+            interstitialAd.adListener = object : AdListener() {
                 override fun onAdClosed() {
                     goToCircleOfFifths()
                 }
@@ -72,9 +67,9 @@ class MainActivity : AppCompatActivity() {
 
         playButton = findViewById(R.id.play_sound)
         playButton.setOnClickListener {
-            soundPlayer.playSound(soundIndex)
-            this.soundIndex++
-            this.soundIndex = this.soundIndex.rem(25)
+            soundIndex++
+            if (soundIndex == 25) soundIndex = 1
+            soundPlayer.playSound(NotesIndexMap.indexNote[soundIndex]!!)
         }
 
 
@@ -85,12 +80,6 @@ class MainActivity : AppCompatActivity() {
 
         // Toasts the test ad message on the screen. Remove this after defining your own ad unit ID.
         Toast.makeText(this, TOAST_TEXT, Toast.LENGTH_LONG).show()
-
-
-    }
-
-    private fun playSound(soundPool: SoundPool, soundIndexes: ArrayList<Int>, index:Int) {
-        soundPool.play(soundIndexes[index], 1F, 1F, 1, 0, 1f)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -113,8 +102,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun showInterstitial() {
         // Show the ad if it"s ready. Otherwise toast and reload the ad.
-        if (interstitialAd?.isLoaded == true) {
-            interstitialAd?.show()
+        if (interstitialAd.isLoaded) {
+            interstitialAd.show()
         } else {
             Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show()
         }
@@ -126,7 +115,7 @@ class MainActivity : AppCompatActivity() {
         val adRequest = AdRequest.Builder()
                 .setRequestAgent("android_studio:ad_template")
                 .build()
-        interstitialAd?.loadAd(adRequest)
+        interstitialAd.loadAd(adRequest)
         scalesButton.isEnabled = true
         intervalsButton.isEnabled = true
     }

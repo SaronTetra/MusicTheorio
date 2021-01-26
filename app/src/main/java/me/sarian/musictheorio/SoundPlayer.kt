@@ -29,10 +29,6 @@ class SoundPlayer(assetManager: AssetManager) {
         soundPool.play(noteIndexMap[note]!!, leftVolume, rightVolume, priority, loop, rate)
     }
 
-    fun playSound(index: Int) {
-        soundPool.play(index, leftVolume, rightVolume, priority, loop, rate)
-    }
-
     init {
         val assetsList = assetManager.list(assetsDirectory)
         assetsList!!.forEach {

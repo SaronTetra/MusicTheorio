@@ -11,7 +11,7 @@ import java.util.*
 import kotlin.random.Random
 
 class IntervalsActivity : AppCompatActivity() {
-    private var bannerAdView: AdView? = null
+    private lateinit var bannerAdView: AdView
     private lateinit var soundPlayer: SoundPlayer
     private var randomInterval: Int = 0
     private var randomNote: Int = 0
@@ -62,7 +62,7 @@ class IntervalsActivity : AppCompatActivity() {
 
         bannerAdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
-        bannerAdView?.loadAd(adRequest)
+        bannerAdView.loadAd(adRequest)
 
         nextButton.performClick()
     }
