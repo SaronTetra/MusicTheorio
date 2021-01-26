@@ -13,6 +13,8 @@ import com.szugyi.circlemenu.view.CircleLayout
 class CircleOfFifthsActivity : AppCompatActivity(), CircleLayout.OnItemSelectedListener,
     CircleLayout.OnItemClickListener, CircleLayout.OnRotationFinishedListener,
     CircleLayout.OnCenterClickListener {
+    private lateinit var soundPlayer: SoundPlayer
+
     private lateinit var bannerAdView: AdView
 
     private lateinit var circleLayout: CircleLayout
@@ -21,6 +23,8 @@ class CircleOfFifthsActivity : AppCompatActivity(), CircleLayout.OnItemSelectedL
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cirlce_of_fifths)
+
+        soundPlayer = SoundPlayer(assets)
 
         MobileAds.initialize(this) {}
 
@@ -44,7 +48,44 @@ class CircleOfFifthsActivity : AppCompatActivity(), CircleLayout.OnItemSelectedL
     }
 
     override fun onItemClick(view: View?) {
-        return
+        when (view!!.id) {
+            R.id.c -> {
+                soundPlayer.playSound("C3")
+            }
+            R.id.g -> {
+                soundPlayer.playSound("G3")
+            }
+            R.id.d -> {
+                soundPlayer.playSound("D3")
+            }
+            R.id.a -> {
+                soundPlayer.playSound("A3")
+            }
+            R.id.e -> {
+                soundPlayer.playSound("E3")
+            }
+            R.id.b -> {
+                soundPlayer.playSound("B3")
+            }
+            R.id.gMol -> {
+                soundPlayer.playSound("F#3")
+            }
+            R.id.dMol -> {
+                soundPlayer.playSound("C#3")
+            }
+            R.id.aMol -> {
+                soundPlayer.playSound("G#3")
+            }
+            R.id.eMol -> {
+                soundPlayer.playSound("D#3")
+            }
+            R.id.bMol -> {
+                soundPlayer.playSound("A#3")
+            }
+            R.id.f -> {
+                soundPlayer.playSound("F3")
+            }
+        }
     }
 
     override fun onRotationFinished(view: View?) {
