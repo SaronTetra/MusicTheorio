@@ -89,6 +89,8 @@ class IntervalsActivity : AppCompatActivity() {
         bannerAdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         bannerAdView?.loadAd(adRequest)
+
+        nextButton.performClick()
     }
 
     private fun playInterval(betterNotes: Map<Int, String>, randRoot: Int, randInterval: Int) {
