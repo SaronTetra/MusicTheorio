@@ -5,67 +5,13 @@
     android:layout_height="match_parent">
 
     <com.szugyi.circlemenu.view.CircleImageView
-        android:id="@+id/c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circle"
-        android:elevation="2dp"
-        android:src="@drawable/ic_g"
-        circle:name="calendar" />
-
-    <com.szugyi.circlemenu.view.CircleImageView
-        android:id="@+id/g"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circle"
-        android:elevation="2dp"
-        android:src="@drawable/ic_g"
-        circle:name="cloud" />
-
-
-    <com.szugyi.circlemenu.view.CircleImageView
-        android:id="@+id/d"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circle"
-        android:elevation="2dp"
-        android:src="@drawable/ic_g"
-        circle:name="mail" />
-
-    <com.szugyi.circlemenu.view.CircleImageView
-        android:id="@+id/a"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circle"
-        android:src="@drawable/ic_g"
-        circle:name="key" />
-
-    <com.szugyi.circlemenu.view.CircleImageView
-        android:id="@+id/e"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circle"
-        android:elevation="2dp"
-        android:src="@drawable/ic_g"
-        circle:name="profile" />
-
-    <com.szugyi.circlemenu.view.CircleImageView
-        android:id="@+id/b"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circle"
-        android:elevation="2dp"
-        android:src="@drawable/ic_g"
-        circle:name="tag" />
-
-    <com.szugyi.circlemenu.view.CircleImageView
         android:id="@+id/gMol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
-        android:src="@drawable/ic_g"
-        circle:name="calendar" />
+        android:src="@drawable/ic_g_mol"
+        circle:name="gMol" />
 
     <com.szugyi.circlemenu.view.CircleImageView
         android:id="@+id/dMol"
@@ -73,8 +19,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
-        android:src="@drawable/ic_g"
-        circle:name="cloud" />
+        android:src="@drawable/ic_d_mol"
+        circle:name="dMol" />
 
 
     <com.szugyi.circlemenu.view.CircleImageView
@@ -83,16 +29,16 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
-        android:src="@drawable/ic_g"
-        circle:name="mail" />
+        android:src="@drawable/ic_a_mol"
+        circle:name="aMol" />
 
     <com.szugyi.circlemenu.view.CircleImageView
         android:id="@+id/eMol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
-        android:src="@drawable/ic_g"
-        circle:name="key" />
+        android:src="@drawable/ic_e_mol"
+        circle:name="eMol" />
 
     <com.szugyi.circlemenu.view.CircleImageView
         android:id="@+id/bMol"
@@ -100,8 +46,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
-        android:src="@drawable/ic_g"
-        circle:name="profile" />
+        android:src="@drawable/ic_b_mol"
+        circle:name="bMol" />
 
     <com.szugyi.circlemenu.view.CircleImageView
         android:id="@+id/f"
@@ -109,7 +55,60 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circle"
         android:elevation="2dp"
+        android:src="@drawable/ic_f"
+        circle:name="f" />
+
+    <com.szugyi.circlemenu.view.CircleImageView
+        android:id="@+id/c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:elevation="2dp"
+        android:src="@drawable/ic_c"
+        circle:name="c" />
+
+    <com.szugyi.circlemenu.view.CircleImageView
+        android:id="@+id/g"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:elevation="2dp"
         android:src="@drawable/ic_g"
-        circle:name="tag" />
+        circle:name="g" />
+
+    <com.szugyi.circlemenu.view.CircleImageView
+        android:id="@+id/d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:elevation="2dp"
+        android:src="@drawable/ic_d"
+        circle:name="d" />
+
+    <com.szugyi.circlemenu.view.CircleImageView
+        android:id="@+id/a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:src="@drawable/ic_a"
+        circle:name="a" />
+
+    <com.szugyi.circlemenu.view.CircleImageView
+        android:id="@+id/e"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:elevation="2dp"
+        android:src="@drawable/ic_e"
+        circle:name="e" />
+
+    <com.szugyi.circlemenu.view.CircleImageView
+        android:id="@+id/b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle"
+        android:elevation="2dp"
+        android:src="@drawable/ic_b"
+        circle:name="b" />
 
 </merge>
